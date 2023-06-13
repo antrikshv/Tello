@@ -1,0 +1,73 @@
+------
+Drone: 1
+id=0, command=command, response=ok, start_time=2023-06-13 17:44:56.821682, end_time=2023-06-13 17:44:56.833707, duration=0.012025
+id=1, command=takeoff, response=ok, start_time=2023-06-13 17:45:03.803851, end_time=2023-06-13 17:45:08.452766, duration=4.648915
+id=2, command=up 50, response=ok, start_time=2023-06-13 17:45:10.518424, end_time=2023-06-13 17:45:12.873190, duration=2.354766
+id=3, command=up 60, response=ok, start_time=2023-06-13 17:45:13.734469, end_time=2023-06-13 17:45:16.767259, duration=3.03279
+id=4, command=down 120, response=ok, start_time=2023-06-13 17:45:20.059923, end_time=2023-06-13 17:45:23.126912, duration=3.066989
+id=5, command=up 90, response=ok, start_time=2023-06-13 17:45:24.050474, end_time=2023-06-13 17:45:26.790477, duration=2.740003
+id=6, command=back 100, response=error No valid imu, start_time=2023-06-13 17:45:30.652430, end_time=2023-06-13 17:45:31.044589, duration=0.392159
+id=7, command=forward 50, response=ok, start_time=2023-06-13 17:45:34.664570, end_time=2023-06-13 17:45:37.020471, duration=2.355901
+id=8, command=ccw 136, response=error No valid imu, start_time=2023-06-13 17:45:39.779583, end_time=2023-06-13 17:45:42.182132, duration=2.402549
+id=9, command=forward 100, response=ok, start_time=2023-06-13 17:45:43.805073, end_time=2023-06-13 17:45:46.319453, duration=2.51438
+id=10, command=cw 60, response=ok, start_time=2023-06-13 17:45:47.199357, end_time=2023-06-13 17:45:48.919493, duration=1.720136
+id=11, command=forward 100, response=error No valid imu, start_time=2023-06-13 17:45:49.603930, end_time=2023-06-13 17:45:50.586141, duration=0.982211
+id=12, command=land, response=ok, start_time=2023-06-13 17:45:53.266181, end_time=2023-06-13 17:45:56.755370, duration=3.489189
+------
+Drone: 2
+id=0, command=command, response=ok, start_time=2023-06-13 17:44:56.820683, end_time=2023-06-13 17:44:56.840729, duration=0.020046
+id=1, command=takeoff, response=ok, start_time=2023-06-13 17:45:03.749847, end_time=2023-06-13 17:45:08.070440, duration=4.320593
+id=2, command=up 50, response=ok, start_time=2023-06-13 17:45:10.490426, end_time=2023-06-13 17:45:12.971278, duration=2.480852
+id=3, command=down 30, response=ok, start_time=2023-06-13 17:45:13.576280, end_time=2023-06-13 17:45:16.397259, duration=2.820979
+id=4, command=up 60, response=ok, start_time=2023-06-13 17:45:20.093924, end_time=2023-06-13 17:45:22.463985, duration=2.370061
+id=5, command=ccw 360, response=ok, start_time=2023-06-13 17:45:24.078463, end_time=2023-06-13 17:45:30.763391, duration=6.684928
+id=6, command=forward 100, response=ok, start_time=2023-06-13 17:45:34.632567, end_time=2023-06-13 17:45:37.296471, duration=2.663904
+id=7, command=cw 90, response=ok, start_time=2023-06-13 17:45:39.867589, end_time=2023-06-13 17:45:41.886880, duration=2.019291
+id=8, command=forward 100, response=ok, start_time=2023-06-13 17:45:43.687016, end_time=2023-06-13 17:45:46.491518, duration=2.804502
+id=9, command=cw 60, response=ok, start_time=2023-06-13 17:45:47.115363, end_time=2023-06-13 17:45:48.705493, duration=1.59013
+id=10, command=forward 100, response=ok, start_time=2023-06-13 17:45:49.702930, end_time=2023-06-13 17:45:52.533503, duration=2.830573
+id=11, command=land, response=ok, start_time=2023-06-13 17:45:53.228181, end_time=2023-06-13 17:45:56.667370, duration=3.439189
+------
+Drone: 3
+id=0, command=command, response=ok, start_time=2023-06-13 17:44:56.821682, end_time=2023-06-13 17:44:56.857855, duration=0.036173
+id=1, command=takeoff, response=ok, start_time=2023-06-13 17:45:03.847843, end_time=2023-06-13 17:45:12.460190, duration=8.612347
+id=2, command=up 50, response=ok, start_time=2023-06-13 17:45:13.087288, end_time=2023-06-13 17:45:15.318563, duration=2.231275
+id=3, command=up 30, response=ok, start_time=2023-06-13 17:45:15.928103, end_time=2023-06-13 17:45:18.074435, duration=2.146332
+id=4, command=down 60, response=ok, start_time=2023-06-13 17:45:20.048930, end_time=2023-06-13 17:45:22.525912, duration=2.476982
+id=5, command=up 60, response=ok, start_time=2023-06-13 17:45:24.017474, end_time=2023-06-13 17:45:26.790477, duration=2.773003
+id=6, command=forward 100, response=ok, start_time=2023-06-13 17:45:34.737560, end_time=2023-06-13 17:45:37.775646, duration=3.038086
+id=7, command=cw 152, response=ok, start_time=2023-06-13 17:45:39.751664, end_time=2023-06-13 17:45:43.070764, duration=3.3191
+id=8, command=forward 100, response=error No valid imu, start_time=2023-06-13 17:45:43.782111, end_time=2023-06-13 17:45:44.295016, duration=0.512905
+id=9, command=cw 60, response=ok, start_time=2023-06-13 17:45:47.143363, end_time=2023-06-13 17:45:48.765493, duration=1.62213
+id=10, command=forward 100, response=ok, start_time=2023-06-13 17:45:49.571931, end_time=2023-06-13 17:45:52.148503, duration=2.576572
+id=11, command=land, response=ok, start_time=2023-06-13 17:45:53.393181, end_time=2023-06-13 17:45:56.667370, duration=3.274189
+------
+Drone: 4
+id=0, command=command, response=ok, start_time=2023-06-13 17:44:56.820683, end_time=2023-06-13 17:44:56.867453, duration=0.04677
+id=1, command=takeoff, response=ok, start_time=2023-06-13 17:45:03.782843, end_time=2023-06-13 17:45:08.312611, duration=4.529768
+id=2, command=up 50, response=ok, start_time=2023-06-13 17:45:10.405434, end_time=2023-06-13 17:45:12.780191, duration=2.374757
+id=3, command=down 60, response=ok, start_time=2023-06-13 17:45:13.564288, end_time=2023-06-13 17:45:15.856743, duration=2.292455
+id=4, command=up 120, response=ok, start_time=2023-06-13 17:45:20.325912, end_time=2023-06-13 17:45:23.209912, duration=2.884
+id=5, command=down 30, response=ok, start_time=2023-06-13 17:45:23.979375, end_time=2023-06-13 17:45:26.321546, duration=2.342171
+id=6, command=back 100, response=ok, start_time=2023-06-13 17:45:30.510390, end_time=2023-06-13 17:45:33.943802, duration=3.433412
+id=7, command=forward 50, response=ok, start_time=2023-06-13 17:45:34.502629, end_time=2023-06-13 17:45:37.020471, duration=2.517842
+id=8, command=cw 28, response=ok, start_time=2023-06-13 17:45:39.906695, end_time=2023-06-13 17:45:40.892710, duration=0.986015
+id=9, command=forward 100, response=ok, start_time=2023-06-13 17:45:43.655993, end_time=2023-06-13 17:45:46.435443, duration=2.77945
+id=10, command=cw 60, response=ok, start_time=2023-06-13 17:45:47.053363, end_time=2023-06-13 17:45:48.765493, duration=1.71213
+id=11, command=forward 100, response=ok, start_time=2023-06-13 17:45:49.532908, end_time=2023-06-13 17:45:52.527568, duration=2.99466
+id=12, command=land, response=ok, start_time=2023-06-13 17:45:53.210171, end_time=2023-06-13 17:45:56.755370, duration=3.545199
+------
+Drone: 5
+id=0, command=command, response=ok, start_time=2023-06-13 17:44:56.820683, end_time=2023-06-13 17:44:56.875134, duration=0.054451
+id=1, command=takeoff, response=ok, start_time=2023-06-13 17:45:03.765843, end_time=2023-06-13 17:45:08.386688, duration=4.620845
+id=2, command=up 50, response=ok, start_time=2023-06-13 17:45:10.462432, end_time=2023-06-13 17:45:12.900208, duration=2.437776
+id=3, command=ccw 360, response=ok, start_time=2023-06-13 17:45:13.602469, end_time=2023-06-13 17:45:20.286912, duration=6.684443
+id=4, command=command, response=ok, start_time=2023-06-13 17:45:20.929921, end_time=2023-06-13 17:45:21.055912, duration=0.125991
+id=5, command=up 30, response=ok, start_time=2023-06-13 17:45:24.006473, end_time=2023-06-13 17:45:25.974184, duration=1.967711
+id=6, command=forward 100, response=ok, start_time=2023-06-13 17:45:30.493454, end_time=2023-06-13 17:45:33.304802, duration=2.811348
+id=7, command=back 250, response=ok, start_time=2023-06-13 17:45:34.698560, end_time=2023-06-13 17:45:38.961614, duration=4.263054
+id=8, command=ccw 54, response=ok, start_time=2023-06-13 17:45:39.818589, end_time=2023-06-13 17:45:41.233709, duration=1.41512
+id=9, command=forward 100, response=ok, start_time=2023-06-13 17:45:43.715016, end_time=2023-06-13 17:45:46.096325, duration=2.381309
+id=10, command=cw 60, response=ok, start_time=2023-06-13 17:45:47.155354, end_time=2023-06-13 17:45:48.705493, duration=1.550139
+id=11, command=forward 100, response=ok, start_time=2023-06-13 17:45:49.554931, end_time=2023-06-13 17:45:52.176503, duration=2.621572
+id=12, command=land, response=ok, start_time=2023-06-13 17:45:53.244190, end_time=2023-06-13 17:45:56.574450, duration=3.33026
