@@ -1,0 +1,25 @@
+------
+Drone: 1
+id=0, command=command, response=ok, start_time=2023-06-12 17:04:59.265755, end_time=2023-06-12 17:04:59.275279, duration=0.009524
+id=1, command=takeoff, response=ok, start_time=2023-06-12 17:05:06.205953, end_time=2023-06-12 17:05:13.620049, duration=7.414096
+id=2, command=land, response=ok, start_time=2023-06-12 17:05:17.433183, end_time=2023-06-12 17:05:20.599050, duration=3.165867
+------
+Drone: 2
+id=0, command=command, response=ok, start_time=2023-06-12 17:04:59.265755, end_time=2023-06-12 17:04:59.283788, duration=0.018033
+id=1, command=takeoff, response=ok, start_time=2023-06-12 17:05:06.104404, end_time=2023-06-12 17:05:09.813588, duration=3.709184
+id=2, command=land, response=ok, start_time=2023-06-12 17:05:17.358550, end_time=2023-06-12 17:05:20.599050, duration=3.2405
+------
+Drone: 3
+id=0, command=command, response=ok, start_time=2023-06-12 17:04:59.265755, end_time=2023-06-12 17:04:59.286791, duration=0.021036
+id=1, command=takeoff, response=ok, start_time=2023-06-12 17:05:06.136408, end_time=2023-06-12 17:05:15.116774, duration=8.980366
+id=2, command=land, response=ok, start_time=2023-06-12 17:05:17.422188, end_time=2023-06-12 17:05:19.588505, duration=2.166317
+------
+Drone: 4
+id=0, command=command, response=ok, start_time=2023-06-12 17:04:59.264755, end_time=2023-06-12 17:04:59.305822, duration=0.041067
+id=1, command=takeoff, response=ok, start_time=2023-06-12 17:05:06.050895, end_time=2023-06-12 17:05:13.598396, duration=7.547501
+id=2, command=land, response=ok, start_time=2023-06-12 17:05:17.389570, end_time=2023-06-12 17:05:19.685951, duration=2.296381
+------
+Drone: 5
+id=0, command=command, response=ok, start_time=2023-06-12 17:04:59.265755, end_time=2023-06-12 17:04:59.324366, duration=0.058611
+id=1, command=takeoff, response=ok, start_time=2023-06-12 17:05:06.249125, end_time=2023-06-12 17:05:11.581916, duration=5.332791
+id=2, command=land, response=ok, start_time=2023-06-12 17:05:17.487794, end_time=2023-06-12 17:05:20.166812, duration=2.679018

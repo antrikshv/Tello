@@ -1,0 +1,17 @@
+------
+Drone: 1
+id=0, command=command, response=ok, start_time=2023-06-12 16:31:19.943023, end_time=2023-06-12 16:31:19.950022, duration=0.006999
+id=1, command=battery?, response=37
+, start_time=2023-06-12 16:31:26.547531, end_time=2023-06-12 16:31:26.583780, duration=0.036249
+id=2, command=land, response=error, start_time=2023-06-12 16:31:53.719502, end_time=2023-06-12 16:31:53.764117, duration=0.044615
+------
+Drone: 2
+id=0, command=command, response=ok, start_time=2023-06-12 16:31:19.943023, end_time=2023-06-12 16:31:19.954537, duration=0.011514
+id=1, command=battery?, response=None, start_time=2023-06-12 16:31:26.615303, end_time=None, duration=None
+id=2, command=land, response=error, start_time=2023-06-12 16:31:53.775057, end_time=2023-06-12 16:31:53.853933, duration=0.078876
+------
+Drone: 3
+id=0, command=command, response=ok, start_time=2023-06-12 16:31:19.943023, end_time=2023-06-12 16:31:19.972616, duration=0.029593
+id=1, command=battery?, response=27
+, start_time=2023-06-12 16:31:26.573756, end_time=2023-06-12 16:31:26.605301, duration=0.031545
+id=2, command=land, response=error, start_time=2023-06-12 16:31:53.919937, end_time=2023-06-12 16:31:53.942030, duration=0.022093

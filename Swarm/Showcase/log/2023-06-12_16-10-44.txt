@@ -1,0 +1,29 @@
+------
+Drone: 1
+id=0, command=command, response=ok, start_time=2023-06-12 16:10:31.194910, end_time=2023-06-12 16:10:31.205930, duration=0.01102
+id=1, command=battery?, response=None, start_time=2023-06-12 16:10:36.452457, end_time=None, duration=None
+id=2, command=land, response=error, start_time=2023-06-12 16:10:42.921674, end_time=2023-06-12 16:10:42.969890, duration=0.048216
+------
+Drone: 2
+id=0, command=command, response=ok, start_time=2023-06-12 16:10:31.194910, end_time=2023-06-12 16:10:31.206920, duration=0.01201
+id=1, command=battery?, response=54
+, start_time=2023-06-12 16:10:36.419456, end_time=2023-06-12 16:10:36.463461, duration=0.044005
+id=2, command=land, response=ok, start_time=2023-06-12 16:10:43.035974, end_time=2023-06-12 16:10:43.548833, duration=0.512859
+------
+Drone: 3
+id=0, command=command, response=ok, start_time=2023-06-12 16:10:31.194910, end_time=2023-06-12 16:10:31.214446, duration=0.019536
+id=1, command=battery?, response=61
+, start_time=2023-06-12 16:10:36.560502, end_time=2023-06-12 16:10:36.582020, duration=0.021518
+id=2, command=land, response=error, start_time=2023-06-12 16:10:43.570455, end_time=2023-06-12 16:10:43.618792, duration=0.048337
+------
+Drone: 4
+id=0, command=command, response=ok, start_time=2023-06-12 16:10:31.194910, end_time=2023-06-12 16:10:31.225461, duration=0.030551
+id=1, command=battery?, response=44
+, start_time=2023-06-12 16:10:36.383936, end_time=2023-06-12 16:10:36.489983, duration=0.106047
+id=2, command=land, response=error, start_time=2023-06-12 16:10:43.674239, end_time=2023-06-12 16:10:43.695790, duration=0.021551
+------
+Drone: 5
+id=0, command=command, response=ok, start_time=2023-06-12 16:10:31.194910, end_time=2023-06-12 16:10:31.234461, duration=0.039551
+id=1, command=battery?, response=54
+, start_time=2023-06-12 16:10:36.372823, end_time=2023-06-12 16:10:36.627053, duration=0.25423
+id=2, command=land, response=ok, start_time=2023-06-12 16:10:43.781671, end_time=2023-06-12 16:10:44.377619, duration=0.595948

@@ -1,0 +1,28 @@
+------
+Drone: 1
+id=0, command=command, response=ok, start_time=2023-06-12 16:12:37.002305, end_time=2023-06-12 16:12:37.020820, duration=0.018515
+id=1, command=battery?, response=55
+, start_time=2023-06-12 16:12:47.372758, end_time=2023-06-12 16:12:47.379285, duration=0.006527
+id=2, command=land, response=error, start_time=2023-06-12 16:13:39.075720, end_time=2023-06-12 16:13:39.086238, duration=0.010518
+------
+Drone: 2
+id=0, command=command, response=ok, start_time=2023-06-12 16:12:37.001304, end_time=2023-06-12 16:12:37.020820, duration=0.019516
+id=1, command=battery?, response=51
+, start_time=2023-06-12 16:12:47.350826, end_time=2023-06-12 16:12:47.384311, duration=0.033485
+id=2, command=land, response=error, start_time=2023-06-12 16:13:39.172794, end_time=2023-06-12 16:13:39.231409, duration=0.058615
+------
+Drone: 3
+id=0, command=command, response=ok, start_time=2023-06-12 16:12:37.002305, end_time=2023-06-12 16:12:37.024824, duration=0.022519
+id=1, command=battery?, response=error, start_time=2023-06-12 16:12:47.426356, end_time=2023-06-12 16:13:39.297865, duration=51.871509
+id=2, command=land, response=ok, start_time=2023-06-12 16:13:39.331484, end_time=2023-06-12 16:13:39.854714, duration=0.52323
+------
+Drone: 4
+id=0, command=command, response=ok, start_time=2023-06-12 16:12:37.002305, end_time=2023-06-12 16:12:37.025822, duration=0.023517
+id=1, command=battery?, response=58
+, start_time=2023-06-12 16:12:47.410347, end_time=2023-06-12 16:12:47.443347, duration=0.033
+id=2, command=land, response=error, start_time=2023-06-12 16:13:39.942444, end_time=2023-06-12 16:13:40.253116, duration=0.310672
+------
+Drone: 5
+id=0, command=command, response=ok, start_time=2023-06-12 16:12:37.002305, end_time=2023-06-12 16:12:37.036835, duration=0.03453
+id=1, command=battery?, response=None, start_time=2023-06-12 16:12:47.485923, end_time=None, duration=None
+id=2, command=land, response=error, start_time=2023-06-12 16:13:40.292176, end_time=2023-06-12 16:13:40.401194, duration=0.109018

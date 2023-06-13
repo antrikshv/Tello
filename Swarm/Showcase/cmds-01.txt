@@ -1,0 +1,69 @@
+scan 5
+1=0TQZL3PED03A1T
+2=0TQZL3PED03AG8
+3=0TQZL3PED03A29
+4=0TQZL3FED039AU
+5=0TQZL3PED039MU
+delay 1
+1>takeoff
+delay 1
+2>takeoff
+delay 1
+3>takeoff
+delay 1
+4>takeoff
+delay 1
+5>takeoff
+sync 8
+*>up 50
+sync 5
+1>down 60
+2>down 30
+4>up 30
+5>up 60
+sync 5
+5>down 120
+4>down 60
+2>up 60
+1>up 120
+sync 5
+1>down 30
+3>up 30
+4>up 60
+5>up 90
+sync 5
+*>down 30
+sync 5
+1>down 40
+sync 5
+2>down 40
+1>up 40
+sync 5
+3>down 40
+2>up 40
+1>up 40
+sync 5
+4>down 40
+3>up 40
+2>up 40
+1>down 40
+sync 5
+5>down 40
+4>up 40
+3>up 40
+2>down 40
+sync 5
+5>up 40
+4>up 40
+3>down 40
+sync 5
+5>up 40
+4>down 40
+sync 5
+5>down 40
+sync 5
+*>down 60
+sync 5
+*>land
+
+

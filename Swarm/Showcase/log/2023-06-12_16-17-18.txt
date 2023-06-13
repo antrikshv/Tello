@@ -1,0 +1,29 @@
+------
+Drone: 1
+id=0, command=command, response=ok, start_time=2023-06-12 16:16:49.297711, end_time=2023-06-12 16:16:49.331231, duration=0.03352
+id=1, command=battery?, response=None, start_time=2023-06-12 16:16:54.502300, end_time=None, duration=None
+id=2, command=land, response=error, start_time=2023-06-12 16:17:17.415123, end_time=2023-06-12 16:17:17.448735, duration=0.033612
+------
+Drone: 2
+id=0, command=command, response=ok, start_time=2023-06-12 16:16:49.297711, end_time=2023-06-12 16:16:49.335235, duration=0.037524
+id=1, command=battery?, response=55
+, start_time=2023-06-12 16:16:54.512815, end_time=2023-06-12 16:16:54.543842, duration=0.031027
+id=2, command=land, response=error, start_time=2023-06-12 16:17:17.493733, end_time=2023-06-12 16:17:17.586319, duration=0.092586
+------
+Drone: 3
+id=0, command=command, response=ok, start_time=2023-06-12 16:16:49.297711, end_time=2023-06-12 16:16:49.335235, duration=0.037524
+id=1, command=battery?, response=38
+, start_time=2023-06-12 16:16:54.567353, end_time=2023-06-12 16:16:54.604377, duration=0.037024
+id=2, command=land, response=error, start_time=2023-06-12 16:17:17.641632, end_time=2023-06-12 16:17:17.675138, duration=0.033506
+------
+Drone: 4
+id=0, command=command, response=ok, start_time=2023-06-12 16:16:49.297711, end_time=2023-06-12 16:16:49.337237, duration=0.039526
+id=1, command=battery?, response=47
+, start_time=2023-06-12 16:16:54.609975, end_time=2023-06-12 16:16:54.637905, duration=0.02793
+id=2, command=land, response=ok, start_time=2023-06-12 16:17:17.781371, end_time=2023-06-12 16:17:18.434739, duration=0.653368
+------
+Drone: 5
+id=0, command=command, response=ok, start_time=2023-06-12 16:16:49.297711, end_time=2023-06-12 16:16:49.343227, duration=0.045516
+id=1, command=battery?, response=47
+, start_time=2023-06-12 16:16:54.642906, end_time=2023-06-12 16:16:54.817101, duration=0.174195
+id=2, command=land, response=error, start_time=2023-06-12 16:17:18.484403, end_time=2023-06-12 16:17:18.501408, duration=0.017005

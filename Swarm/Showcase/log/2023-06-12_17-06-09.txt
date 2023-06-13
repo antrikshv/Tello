@@ -1,0 +1,25 @@
+------
+Drone: 1
+id=0, command=command, response=ok, start_time=2023-06-12 17:05:35.296358, end_time=2023-06-12 17:05:35.311373, duration=0.015015
+id=1, command=takeoff, response=ok, start_time=2023-06-12 17:05:42.302632, end_time=2023-06-12 17:05:50.514889, duration=8.212257
+id=2, command=land, response=error, start_time=2023-06-12 17:06:08.589929, end_time=2023-06-12 17:06:08.616466, duration=0.026537
+------
+Drone: 2
+id=0, command=command, response=ok, start_time=2023-06-12 17:05:35.297358, end_time=2023-06-12 17:05:35.328882, duration=0.031524
+id=1, command=takeoff, response=ok, start_time=2023-06-12 17:05:42.347160, end_time=2023-06-12 17:05:46.257719, duration=3.910559
+id=2, command=land, response=error, start_time=2023-06-12 17:06:08.706036, end_time=2023-06-12 17:06:08.902692, duration=0.196656
+------
+Drone: 3
+id=0, command=command, response=ok, start_time=2023-06-12 17:05:35.297358, end_time=2023-06-12 17:05:35.331890, duration=0.034532
+id=1, command=takeoff, response=ok, start_time=2023-06-12 17:05:42.326148, end_time=2023-06-12 17:05:50.964809, duration=8.638661
+id=2, command=land, response=error, start_time=2023-06-12 17:06:08.654450, end_time=2023-06-12 17:06:08.693545, duration=0.039095
+------
+Drone: 4
+id=0, command=command, response=ok, start_time=2023-06-12 17:05:35.297358, end_time=2023-06-12 17:05:35.340889, duration=0.043531
+id=1, command=takeoff, response=ok, start_time=2023-06-12 17:05:42.409771, end_time=2023-06-12 17:05:50.997443, duration=8.587672
+id=2, command=land, response=error, start_time=2023-06-12 17:06:08.746046, end_time=2023-06-12 17:06:08.801149, duration=0.055103
+------
+Drone: 5
+id=0, command=command, response=ok, start_time=2023-06-12 17:05:35.296358, end_time=2023-06-12 17:05:35.340889, duration=0.044531
+id=1, command=takeoff, response=ok, start_time=2023-06-12 17:05:42.392233, end_time=2023-06-12 17:05:51.046442, duration=8.654209
+id=2, command=land, response=error, start_time=2023-06-12 17:06:08.622448, end_time=2023-06-12 17:06:08.648465, duration=0.026017

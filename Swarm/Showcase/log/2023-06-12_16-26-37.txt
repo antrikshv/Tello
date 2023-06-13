@@ -1,0 +1,28 @@
+------
+Drone: 1
+id=0, command=command, response=ok, start_time=2023-06-12 16:26:04.396108, end_time=2023-06-12 16:26:04.398122, duration=0.002014
+id=1, command=battery?, response=27
+, start_time=2023-06-12 16:26:10.555882, end_time=2023-06-12 16:26:10.589869, duration=0.033987
+id=2, command=land, response=ok, start_time=2023-06-12 16:26:34.240247, end_time=2023-06-12 16:26:34.801561, duration=0.561314
+------
+Drone: 2
+id=0, command=command, response=ok, start_time=2023-06-12 16:26:04.396108, end_time=2023-06-12 16:26:04.415674, duration=0.019566
+id=1, command=battery?, response=error, start_time=2023-06-12 16:26:10.621289, end_time=2023-06-12 16:26:34.877193, duration=24.255904
+id=2, command=land, response=ok, start_time=2023-06-12 16:26:34.926021, end_time=2023-06-12 16:26:35.578528, duration=0.652507
+------
+Drone: 3
+id=0, command=command, response=ok, start_time=2023-06-12 16:26:04.396108, end_time=2023-06-12 16:26:04.417682, duration=0.021574
+id=1, command=battery?, response=47
+, start_time=2023-06-12 16:26:10.605047, end_time=2023-06-12 16:26:10.621289, duration=0.016242
+id=2, command=land, response=ok, start_time=2023-06-12 16:26:35.643614, end_time=2023-06-12 16:26:36.332216, duration=0.688602
+------
+Drone: 4
+id=0, command=command, response=ok, start_time=2023-06-12 16:26:04.396108, end_time=2023-06-12 16:26:04.437713, duration=0.041605
+id=1, command=battery?, response=38
+, start_time=2023-06-12 16:26:10.584869, end_time=2023-06-12 16:26:10.626310, duration=0.041441
+id=2, command=land, response=ok, start_time=2023-06-12 16:26:36.431799, end_time=2023-06-12 16:26:36.892742, duration=0.460943
+------
+Drone: 5
+id=0, command=command, response=ok, start_time=2023-06-12 16:26:04.397109, end_time=2023-06-12 16:26:04.451709, duration=0.0546
+id=1, command=battery?, response=error, start_time=2023-06-12 16:26:10.573878, end_time=2023-06-12 16:26:36.964371, duration=26.390493
+id=2, command=land, response=ok, start_time=2023-06-12 16:26:37.085151, end_time=2023-06-12 16:26:37.615318, duration=0.530167
