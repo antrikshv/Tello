@@ -1,9 +1,9 @@
 scan 5
+0=0TQZL3PED03A2X
 1=0TQZL3PED03A1T
 2=0TQZL3PED03AG8
 3=0TQZL3PED03A29
 4=0TQZL3FED039AU
-5=0TQZL3PED039MU
 delay 1
 *>takeoff
 sync 5
@@ -12,31 +12,63 @@ delay 2
 sync 5
 1>down 60
 2>down 30
-3>ccw 360
+0>ccw 360
 4>up 30
-5>up 60
+3>up 60
 sync 5
-5>down 120
+*>forward 100
+sync 5
+3>down 120
 4>down 60
-3>command
 2>up 60
 1>up 120
 sync 5
+*>forward 100
 1>down 30
-3>up 30
+0>up 30
 4>up 60
-5>up 90
+3>up 90
 2>ccw 360
 sync 5
 3>forward 100
 1>back 100
-5>back 150
+5>back 100
 sync 5
 1>forward 50
 2>forward 100
 3>back 250
 4>forward 100
 5>forward 50
+sync 5
+3>up 20
+2>down 20
+4>down 20
+5>down 90
+1>down 90
+sync 5
+3>down 90
+2>up 20
+4>up 20
+5>up 110
+1>up 110
+sync 5
+1>ccw 360
+5>ccw 360
+2>right 50
+3>right 50
+4>right 50
+delay 1
+2>up 50
+3>up 50
+4>up 50
+delay 1
+2>left 50
+3>left 50
+4>left 50
+delay 1
+2>down 50
+3>down 50
+4>down 50
 sync 5
 4>cw 130
 5>ccw 100

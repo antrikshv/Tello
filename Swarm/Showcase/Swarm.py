@@ -69,6 +69,8 @@ class Swarm(object):
                 return True
             return False
         
+        
+
         try:
             for command in self.commands:
                 if is_invalid_command(command):
