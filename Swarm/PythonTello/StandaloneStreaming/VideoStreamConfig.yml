@@ -1,0 +1,20 @@
+index:
+    0
+
+telloip:
+  "192.168.10.1"
+
+serverip:
+  "192.168.56.1"
+
+rcvTelloCmdPort:
+  7777
+
+sendTelloVidPort:
+  10000
+
+sendTelloRespPort:
+  5000
+
+buffsize:
+  65536

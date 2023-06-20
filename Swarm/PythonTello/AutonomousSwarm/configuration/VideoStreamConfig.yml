@@ -1,0 +1,44 @@
+fpath:
+  "FaceTracking.txt"
+
+index:
+    0
+
+telloip:
+  "192.168.10.1"
+
+serverip:
+  "192.168.56.1"
+
+rcvTelloCmdPort:
+  7777
+
+sendTelloVidPort:
+  10000
+
+sendTelloRespPort:
+  5000
+
+buffsize:
+  65536
+
+dataEncoding:
+  'utf-8'
+
+SwarmTelloAddr:
+    0: "192.168.10.1"
+    1: "10.168.100.226"
+    2: "10.168.100.238"
+    3: "10.168.100.244"
+    4: "10.168.100.247"
+    5: "10.168.100.250"
+
+SwarmTotal:
+  1
+
+SwarmPort:
+  8889
+
+SwarmListeningPort:
+  8889
+

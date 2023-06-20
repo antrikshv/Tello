@@ -1,0 +1,49 @@
+telloAddr:
+    0: "192.168.56.1"
+    1: "192.168.50.40"
+
+telloTotal:
+    2
+
+localip:
+  "192.168.56.1"
+
+sendUnity:
+  8000
+
+rcvUnity:
+  6432
+
+sendTelloCmdPort:
+  7777
+
+rcvTelloVidPort:
+  10000
+
+rcvTelloRespPort:
+  5000
+
+rcvTelloAutoRespPort:
+  5100
+
+buffsize:
+  65536
+
+dataEncoding:
+  'utf-8'
+
+SwarmTelloAddr:
+    0: "192.168.56.1"
+    1: "192.168.50.18"
+
+SwarmTotal:
+  1
+
+SwarmPort:
+  8889
+
+SwarmListeningPort:
+  8889
+
+SwarmCmdFiles:
+    0: "cmd0.txt"

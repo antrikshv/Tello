@@ -1,0 +1,9 @@
+command
+battery?
+mon
+mdirection 0
+takeoff
+up 50
+go 90 0 120 100 m8 
+go -50 0 80 100 m5
+land
