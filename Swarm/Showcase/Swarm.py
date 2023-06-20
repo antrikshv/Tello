@@ -9,6 +9,7 @@ import time
 import os
 import binascii
 from contextlib import suppress
+import threading
 
 class Swarm(object):
     """
@@ -50,6 +51,8 @@ class Swarm(object):
             '10.168.100.247': 4,
             '10.168.100.250': 5,
         }
+        self.cfg = self.read_yaml("configuration/showcaseConfig.yml")
+        self.telloIps = self.cfg["SwarmTelloAddr"]
 
     def start(self):
         """
@@ -69,8 +72,10 @@ class Swarm(object):
                 return True
             return False
         
+        self.checkInputThread = threading.Thread(target=self.check_input)
+        self.checkInputThread.daemon = False
+        self.checkInputThread.start()
         
-
         try:
             for command in self.commands:
                 if is_invalid_command(command):
@@ -103,6 +108,26 @@ class Swarm(object):
             traceback.print_exc()
         finally:
             SwarmUtil.save_log(self.manager)
+
+    def check_input(self):
+        print("Checking Input")
+        while True:
+            val = input()
+            if (val == 'AI'):
+                self.manager.toggle_facetracking(True)
+            elif (val == "NAI"):
+                self.manager.toggle_facetracking(False)
+            elif (val == "0"):
+                self._handle_gte("0>land")
+            elif (val == "1"):
+                self._handle_gte("1>land")
+            elif (val == "2"):
+                self._handle_gte("2>land")
+            elif (val == "3"):
+                self._handle_gte("3>land")
+            elif (val == "4"):
+                self._handle_gte("4>land")
+
 
     def _wait_for_all(self):
         """
@@ -147,7 +172,9 @@ class Swarm(object):
         """
         n_tellos = int(command.partition('scan')[2])
 
-        self.manager.find_avaliable_tello(n_tellos)
+        self.manager.connect_predetermined_tello(self.telloIps, n_tellos)
+        # self.manager.find_avaliable_tello(n_tellos)
+        time.sleep(20)
         self.tellos = self.manager.get_tello_list()
         self.pools = SwarmUtil.create_execution_pools(n_tellos)
 
@@ -173,15 +200,16 @@ class Swarm(object):
         if id == '*':
             id_list = [t for t in range(len(self.tellos))]
         else:
-            id_list.append(int(id)-1) 
+            id_list.append(int(id)) 
         
         action = str(command.partition('>')[2])
+        print(action)
 
         for tello_id in id_list:
             sn = self.id2sn[tello_id]
             ip = self.sn2ip[sn]
             id = self.ip2id[ip]
-
+            
             self.pools[id].put(action)
             print(f'[ACTION] SN = {sn}, IP = {ip}, ID = {id}, ACTION = {action}')
 
@@ -311,3 +339,8 @@ class Swarm(object):
         :return: None.
         """
         print(f'[EXCEPTION], {e}')
+
+    """[TOOL] Read Configuration File"""
+    def read_yaml(self, file_path):
+        with open(file_path, "r") as f:
+            return yaml.safe_load(f)

@@ -1,0 +1,10 @@
+scan 5
+*>takeoff
+sync 5
+1>land
+2>land
+3>land
+4>land
+sync 5
+0>up 100
+

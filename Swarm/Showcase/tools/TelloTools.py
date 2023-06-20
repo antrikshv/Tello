@@ -93,7 +93,7 @@ class Tello:
                  retry_count):
 
         global threads_initialized, client_socket, drones
-
+        self.tello_ip = host
         self.address = (host, Tello.CONTROL_UDP_PORT)
         self.stream_on = False
         self.retry_count = retry_count
@@ -1012,6 +1012,8 @@ class Tello:
         host = self.address[0]
         if host in drones:
             del drones[host]
+
+        client_socket.close()
 
     def __del__(self):
         self.end()

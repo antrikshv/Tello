@@ -38,7 +38,7 @@ class SwarmUtil(object):
             while queue.empty():
                 pass
             command = queue.get()
-            tello.send_command(command)
+            tello.send_command_with_return(command)
             
 
 

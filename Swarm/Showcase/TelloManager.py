@@ -13,6 +13,14 @@ from Stats import *
 from SubnetInfo import *
 from Tello import *
 import yaml
+import tools.TelloTools as TelloClient
+import cv2
+import numpy as np
+import math
+import asyncio
+import tensorflow
+from cvzone.HandTrackingModule import HandDetector
+from cvzone.ClassificationModule import Classifier
 
 class TelloManager(object):
     """
@@ -41,10 +49,21 @@ class TelloManager(object):
 
         self.last_response_index = {}
         self.str_cmd_index = {}
+        self.isFaceTracking = False
+        self.offset = 20
+        self.imgSize = 300
+        self.index = 0
+        self.labels = ["Misc","Land","Formation"]
+
+        
 
     def read_yaml(self, file_path):
         with open(file_path, "r") as f:
             return yaml.safe_load(f)
+    
+    def toggle_facetracking(self, bool):
+        self.isFaceTracking = bool
+        print("[INFO] FaceTracking Status is set to: " + str(self.isFaceTracking))
         
     def find_avaliable_tello(self, num):
         """
@@ -87,7 +106,127 @@ class TelloManager(object):
         for ip in self.tello_ip_list:
             temp[ip] = self.log[ip]
         self.log = temp
+    
+    def connect_predetermined_tello(self, telloIps, n_tellos):
+        i = 0
+        err = False
+        while (i < n_tellos):
+            self.tello_list.append(TelloClient.Tello(telloIps[i], 1))
+            self.tello_list[i].send_command_with_return("command")
+            time.sleep(2)
+            try:
+                print("DRONE BATTERY = " + str(self.tello_list[i].get_battery()))
+            except Exception as e:
+                err = True
+                print(e)
+            if (err == True):
+                print("DRONE BATTERY = " + str(self.tello_list[i].get_battery()))
+                
+            i+=1
+        
+        # self.me = Tello.Tello(self.cfg["telloip"], 1)
+        # self.me.send_command_with_return("command")
+        self.tello_list[0].send_command_with_return("streamon")
 
+        self.displayVideoThread = threading.Thread(target=self.displayVideo)
+        self.displayVideoThread.daemon = False
+        self.displayVideoThread.start()
+    
+    def displayVideo(self):
+        print("[INFO] Starting Video Stream")
+        face_cascade = cv2.CascadeClassifier('cascades/haarcascade_frontalface_default.xml')
+        self.detector = HandDetector(maxHands=1)
+        self.classifier = Classifier("HandSignalModel/keras_model.h5","HandSignalModel/labels.txt")
+        while True:
+            try:
+                frame = self.tello_list[0].get_frame_read().frame
+                if (self.isFaceTracking):
+                    # hands, img = self.detector.findHands(frame)
+                    # if hands:
+                    #     hand = hands[0]
+                    #     xh,yh,wh,hh = hand['bbox']
+                    #     imgCrop = img[yh-self.offset:yh+hh+self.offset, xh-self.offset:xh+wh+self.offset]
+                    #     asyncio.run(self.processImg(imgCrop, hh, wh))
+                    cap = self.tello_list[0].get_video_capture()
+
+                    height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
+                    width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
+                    center_x = int(width/2)
+                    center_y = int(height/3)
+
+                    cv2.circle(frame, (center_x, center_y), 10, (0, 255, 0))
+                    
+                    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                    faces = face_cascade.detectMultiScale(gray, 1.3, minNeighbors=5)
+                    
+                    face_center_x = center_x
+                    face_center_y = center_y
+                    z_area = 0
+                    for face in faces:
+                        (x, y, w, h) = face
+                        cv2.rectangle(frame,(x, y),(x + w, y + h),(255, 255, 0), 2)
+
+                        face_center_x = x + int(h/2)
+                        face_center_y = y + int(w/2)
+                        z_area = w * h
+
+                        cv2.circle(frame, (face_center_x, face_center_y), 10, (0, 0, 255))
+
+                
+                    offset_x = face_center_x - center_x
+                    offset_y = face_center_y - center_y - 30
+                    cv2.putText(img, self.labels[self.index], (10, 50),cv2.FONT_HERSHEY_SIMPLEX,2,(0,0,255),2)
+                    cv2.putText(frame, f'[{offset_x}, {offset_y}, {z_area}]', (10, 200), cv2.FONT_HERSHEY_SIMPLEX, 2, (0,0,255), 2, cv2.LINE_AA)
+                    self.adjust_tello_position(offset_x, offset_y, z_area)
+                    
+                cv2.imshow('TELLO VIDEO',frame)
+                key = cv2.waitKey(1) & 0xFF
+                if key == ord('q'):
+                    break
+                
+            except:
+                pass
+    
+    def adjust_tello_position(self, offset_x, offset_y, offset_z):
+        if not -90 <= offset_x <= 90 and offset_x is not 0:
+            offset_x = offset_x/8
+        else:
+            offset_x = 0
+        if not -50 <= offset_y <= 50 and offset_y is not -30:
+            offset_y = offset_y/7
+        else:
+            offset_y = 0
+        if not 15000 <= offset_z <= 25000 and offset_z is not 0:
+            offset_z = ((offset_z-20000)/900)
+        else:
+            offset_z = 0
+        self.tello_list[0].send_rc_control(0, -offset_z, -offset_y, offset_x)
+
+    # async def processImg(self, imgCrop, h, w):   
+    #     print("processing hand")
+    #     aspectRatio = h/w
+    #     imgWhite = np.ones((self.imgSize,self.imgSize,3),np.uint8)*255
+    #     if aspectRatio>1:
+    #         k = self.imgSize/h
+    #         wCal = math.ceil(k*w)
+    #         imgResize = cv2.resize(imgCrop, (wCal, self.imgSize))
+    #         wGap = math.ceil((self.imgSize-wCal)/2)
+    #         imgWhite[:,wGap:wCal+wGap] = imgResize
+    #         pred, self.index = self.classifier.getPrediction(imgWhite)
+    #     else:
+    #         k = self.imgSize/w
+    #         hCal = math.ceil(k*h)
+    #         imgResize = cv2.resize(imgCrop, (self.imgSize, hCal))
+    #         hGap = math.ceil((self.imgSize-hCal)/2)
+    #         imgWhite[hGap:hCal+hGap,:] = imgResize
+    #         pred, self.index = self.classifier.getPrediction(imgWhite)
+    #     # if (self.index == 1 and self.takeoff == 1):
+    #     #     self.autoLanding = 1
+    #     #     self.takeoff = 0
+    #         # self.drones[0].send_command_without_return("land")
+    #         # self.swarmLand()
+    #     # cv2.imshow("ImageCrop", imgWhite)
+        
     def get_possible_ips(self):
         """
         Gets all the possible IP addresses for subnets that the computer is a part of.

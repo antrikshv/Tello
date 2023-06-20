@@ -19,6 +19,6 @@ def parse_args(args):
 if __name__ == '__main__':
     args = parse_args(sys.argv[1:])
     fpath = args.file
-
+    
     swarm = Swarm(fpath)
     swarm.start()
