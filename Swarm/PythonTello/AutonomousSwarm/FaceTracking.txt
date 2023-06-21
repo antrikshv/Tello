@@ -1,11 +1,35 @@
 *>takeoff
-0>command
 delay 4
-0>up 50
-*>down 50
+*>up 30
+delay 4
+0>up 30
+1>up 70
+2>up 70
+3>down 30
+4>down 30
+delay 4
+*>forward 150
+delay 4
+4>land
+delay 2
+3>up 20
+2>down 80
+1>down 20
+0>up 20
+delay 4
+*>forward 150
 delay 4
 3>land
-4>land
-0>up 50
-1>up 50
-2>up 50
+0>down 40
+1>up 30
+2>up 70
+delay 4
+0>forward 300
+delay 4
+1>left 50
+2>right 50
+0>up 20
+delay 5
+1>forward 100
+2>forward 100
+0>up 70

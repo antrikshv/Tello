@@ -27,6 +27,7 @@ class TelloClient(object):
         self.SwarmTotal = self.cfg["SwarmTotal"]
         self.fpath = self.cfg["fpath"]
         self.commands = self._get_commands(self.fpath)
+        self.countSwarmRCerr = 0
 
         #Establish Connection with the Tello
         err = False
@@ -149,10 +150,12 @@ class TelloClient(object):
             while True:
                 val = input("[INPUT] Key Commands:")
                 if val == "start":
+                    
                     try:
                         for command in self.commands:
                             command = command.rstrip()
                             if '>' in command:
+                                
                                 self._handle_gte(command)
                             elif 'delay' in command:
                                 self._handle_delay(command)
@@ -296,7 +299,12 @@ class TelloClient(object):
             try:
                 self.drones[i].send_rc_control(roll, pitch, throttle, yaw)
             except:
-                print("error")
+                if (self.countSwarmRCerr == 0):
+                    print("no swarm drones")
+                    self.countSwarmRCerr+=1
+                else:
+                    pass
+                
                 # self.drones[i].send_command_with_return("land")
             i+=1
     def swarmForward(self, message):
@@ -481,7 +489,8 @@ class TelloClient(object):
         if (self.index == 1):
             print("landing")
             self.autoLanding = 1
-            self.swarmLand()
+            self.drones[1].send_command_without_return("land")
+            self.drones[2].send_command_without_return("land")
             self.drones[0].send_command_with_return("land")
         elif (self.autoLanding == 0):
             self.drones[0].send_rc_control(0, -offset_z, -offset_y, offset_x)
@@ -503,6 +512,7 @@ class TelloClient(object):
         action = str(command.partition('>')[2])
         details = action.split()
         if id == '*':
+            print("here: " + action)
             self.broadcast(action)
             self.drones[0].send_command_with_return(action)
         else:

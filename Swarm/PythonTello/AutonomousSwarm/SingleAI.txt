@@ -1,0 +1,3 @@
+*>takeoff
+delay 2
+0>up 100
