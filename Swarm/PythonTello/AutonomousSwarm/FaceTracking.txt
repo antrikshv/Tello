@@ -24,12 +24,10 @@ delay 4
 1>up 30
 2>up 70
 delay 4
-0>forward 300
+0>forward 250
 delay 4
 1>left 50
 2>right 50
 0>up 20
 delay 5
-1>forward 100
-2>forward 100
 0>up 70
