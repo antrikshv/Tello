@@ -34,6 +34,7 @@ class TelloClient(object):
         i = 0
         self.drones = []
         self.dronesFlight = []
+        print("here")
         while (i < self.SwarmTotal):
             self.drones.append(Tello.Tello(self.cfg["SwarmTelloAddr"][i], 1))
             self.dronesFlight.append(False)
@@ -558,6 +559,7 @@ if __name__ == '__main__':
     parser.add_argument("--standalone", action="store_true")
     parser.add_argument("--server", action="store_true")
     args = parser.parse_args()
+    print("here")
     if (args.standalone == True and args.server == True):
         print("[ERROR] Only use one mode [--standalone or --server]!")
     elif (args.standalone == False and args.server == False):

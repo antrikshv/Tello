@@ -1,8 +1,14 @@
-# fpath:
-#   "FaceTracking.txt"
-
 fpath:
-  "SingleAI.txt"
+  "FaceTracking.txt"
+
+SwarmTotal:
+  5
+
+# fpath:
+#   "SingleAI.txt"
+#
+# SwarmTotal:
+#   5
 
 index:
     0
@@ -29,15 +35,15 @@ dataEncoding:
   'utf-8'
 
 SwarmTelloAddr:
-    0: "192.168.10.1"
+    0: "10.168.100.211"
     1: "10.168.100.226"
     2: "10.168.100.238"
     3: "10.168.100.244"
     4: "10.168.100.247"
     5: "10.168.100.250"
-
-SwarmTotal:
-  1
+  
+# SwarmTelloAddr:
+#     0: "192.168.10.1"
 
 SwarmPort:
   8889
