@@ -22,11 +22,13 @@ class SwarmServer(object):
         self.baseAutoRespPort = self.serverCfg["rcvTelloAutoRespPort"]
 
         #Set up all the ports and misc
-        self.pcSock = U.UdpComms(udpIP=self.serverIP, pcIP=self.serverIP, 
+        self.unityRecvSock = U.UdpComms(udpIP=self.serverIP, pcIP=self.serverIP, 
                                  portTX=self.serverCfg["sendUnity"], portRX=self.serverCfg["rcvUnity"], 
                                  enableRX=True, suppressWarnings=True)
         self.piSock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.unityServer = (self.serverIP, self.serverCfg["sendUnity"])
+        self.unitySendSock = (self.serverIP, self.serverCfg["sendUnity"])
+
+        #Set up misc
         self.TelloQ = queue.Queue()
         self.command_timeout = .3
         self.abort_flag = False
@@ -41,6 +43,7 @@ class SwarmServer(object):
         self.raspRespQ = queue.Queue()
         self.autoRespQ = queue.Queue()
         
+        #Thread to handle responses from different raspberry Servers
         self.raspDroneResponseThread = threading.Thread(target=self.raspDroneResponse)
         self.raspDroneResponseThread.daemon = True
         self.raspDroneResponseThread.start()
@@ -48,7 +51,7 @@ class SwarmServer(object):
     """[RASP-MODE] Main Thread for Comms with Raspberry Servers"""               
     def raspMain(self):
         while True:
-            data = self.pcSock.ReadReceivedData()
+            data = self.unityRecvSock.ReadReceivedData()
             if data != None:
                 print(data)
                 arrData = data.split()
@@ -77,7 +80,7 @@ class SwarmServer(object):
             rcvRaspRespPort = self.baseRaspRespPort + i
             rcvAutoRespPort = self.baseAutoRespPort + i
             raspResp[i] = raspResponse(i, self.serverIP, rcvRaspRespPort, rcvAutoRespPort, 
-                                       self.buffSize, self.raspRespQ, self.autoRespQ, self.unityServer)
+                                       self.buffSize, self.raspRespQ, self.autoRespQ, self.unitySendSock)
             transmission[i] = threading.Thread(target=raspResp[i].main)
             transmission[i].daemon = True
             transmission[i].start()
@@ -88,7 +91,7 @@ class SwarmServer(object):
                 print("here")
                 response = self.raspRespQ.get_nowait()
                 print(response)
-                self.pcSock.SendData(response.decode('utf-8'))
+                self.unityRecvSock.SendData(response.decode('utf-8'))
                 # if (response[1] == "land"):
                 #     self.pcSock.SendData(response[0] + " land")
 
@@ -136,6 +139,9 @@ class SwarmServer(object):
                                 (self.serverCfg["SwarmTelloAddr"][index], self.serverCfg["SwarmPort"]))
             self.waitDroneResponse(self, index)
 
+""" [TOOL] Class used to handle the individual responses and connections
+with the different RaspBerry Pis
+"""
 class raspResponse(object):
     def __init__(self, index, addr, vidport, autoport, buffsize, q, q2, unityServer):
         self.buffSize = buffsize

@@ -29,7 +29,7 @@ class TelloClient(object):
         self.commands = self._get_commands(self.fpath)
         self.countSwarmRCerr = 0
 
-        #Establish Connection with the Tello
+        #Establish Connection with the Tello Drones directly for Interaction Day
         err = False
         i = 0
         self.drones = []
@@ -50,9 +50,6 @@ class TelloClient(object):
                 
             i+=1
         
-        
-        # self.me = Tello.Tello(self.cfg["telloip"], 1)
-        # self.me.send_command_with_return("command")
         self.drones[0].send_command_with_return("streamon")
         print("[INFO] Starting Video Stream")
         
@@ -79,21 +76,14 @@ class TelloClient(object):
         self.detector = HandDetector(maxHands=1)
         self.classifier = Classifier("HandSignalModel/keras_model.h5","HandSignalModel/labels.txt")
         
-        #Start the socket
+        #Start the socket if talking to SwarmServer
         # self.serverSock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         # self.telloCmdSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         # self.telloCmdSocket.bind(self.telloAddr)
         
         
-
-    def _get_commands(self, fpath):
-        """
-        Gets the commands.
-
-        :param fpath: Command file path.
-        :return: List of commands.
-        """
-        
+    """[TOOL] Opens and Reads Commands from file"""
+    def _get_commands(self, fpath):      
         with open(fpath, 'r') as f:
             return f.readlines()
 
@@ -176,66 +166,66 @@ class TelloClient(object):
                     self._handle_gte("4>land")
 
         elif (self.isServer and self.isStandalone):
-            print("hi")
-            # data,_ = self.telloCmdSocket.recvfrom(self.buffSize)
-            # if data != None: 
-            #     print(data)
-                # data = data.decode('utf8')
-                # data = data.split() 
-                # if (len(data) == 1 or len(data) == 2):
-                #     if (data[0] == "switchCam"):
-                #         print("switchCam")
-                #         self.drones[0].send_command_without_return("downvision " + str(cam))
-                #         cam = 0 if cam == 1 else 1
-                #     if (data[0] == "Autonomous"):
-                #         print("autonomous")
-                #         self.autonomous = True
-                #     if (data[0] == "RC"):
-                #         print("rc")
-                #         self.autonomous = False
-                # elif (len(data) == 5):
-                #     if (data[4] == '1' and self.takeoff == 0):
-                #         # if (self.takeoffCount == 0):
-                #         #     self.takeOffRoutine()
-                #         #     self.takeoffCount+=1
-                #         # else: 
-                #         self.drones[0].send_command_without_return("takeoff")
-                #         self.dronesFlight[0] = True
-                #         self.swarmTakeoff()
-                #         print("takeoff")
-                #         self.takeoff = 1
-                #         self.autoLanding = 0
-                #     elif (data[4] == '-1' and self.takeoff == 1): 
-                #         self.drones[0].send_command_without_return("land")
-                #         self.dronesFlight[0] = False
-                #         self.swarmLand()
-                #         print("land")
-                #         self.takeoff = 0
-                #     elif (data[4] == '0'):
-                #         try:
-                #             self.drones[0].send_rc_control(int(data[0]), int(data[1]), int(data[2]), int(data[3]))
-                #             self.swarmRC(int(data[0]), int(data[1]), int(data[2]), int(data[3]))
-                #         except:
-                #             print("error")
-                #         print(data) 
-                # elif (len(data) == 6):
-                #     droneIndex = int(data[5])
-                #     if (data[4] == '1' and self.takeoff == 0): 
-                #         self.drones[droneIndex].send_command_without_return("takeoff")
-                #         self.dronesFlight[droneIndex] = True
-                #         print("takeoff")
-                #         self.takeoff = 1
-                #     elif (data[4] == '-1' and self.takeoff == 1): 
-                #         self.drones[droneIndex].send_command_without_return("land")
-                #         self.dronesFlight[droneIndex] = False
-                #         print("land")
-                #         self.takeoff = 0
-                #     elif (data[4] == '0'):
-                #         try:
-                #             self.drones[droneIndex].send_rc_control(int(data[0]), int(data[1]), int(data[2]), int(data[3]))
-                #         except:
-                #             print("error")
+            data,_ = self.telloCmdSocket.recvfrom(self.buffSize)
+            if data != None: 
+                print(data)
+                data = data.decode('utf8')
+                data = data.split() 
+                if (len(data) == 1 or len(data) == 2):
+                    if (data[0] == "switchCam"):
+                        print("switchCam")
+                        self.drones[0].send_command_without_return("downvision " + str(cam))
+                        cam = 0 if cam == 1 else 1
+                    if (data[0] == "Autonomous"):
+                        print("autonomous")
+                        self.autonomous = True
+                    if (data[0] == "RC"):
+                        print("rc")
+                        self.autonomous = False
+                elif (len(data) == 5):
+                    if (data[4] == '1' and self.takeoff == 0):
+                        # if (self.takeoffCount == 0):
+                        #     self.takeOffRoutine()
+                        #     self.takeoffCount+=1
+                        # else: 
+                        self.drones[0].send_command_without_return("takeoff")
+                        self.dronesFlight[0] = True
+                        self.swarmTakeoff()
+                        print("takeoff")
+                        self.takeoff = 1
+                        self.autoLanding = 0
+                    elif (data[4] == '-1' and self.takeoff == 1): 
+                        self.drones[0].send_command_without_return("land")
+                        self.dronesFlight[0] = False
+                        self.swarmLand()
+                        print("land")
+                        self.takeoff = 0
+                    elif (data[4] == '0'):
+                        try:
+                            self.drones[0].send_rc_control(int(data[0]), int(data[1]), int(data[2]), int(data[3]))
+                            self.swarmRC(int(data[0]), int(data[1]), int(data[2]), int(data[3]))
+                        except:
+                            print("error")
+                        print(data) 
+                elif (len(data) == 6):
+                    droneIndex = int(data[5])
+                    if (data[4] == '1' and self.takeoff == 0): 
+                        self.drones[droneIndex].send_command_without_return("takeoff")
+                        self.dronesFlight[droneIndex] = True
+                        print("takeoff")
+                        self.takeoff = 1
+                    elif (data[4] == '-1' and self.takeoff == 1): 
+                        self.drones[droneIndex].send_command_without_return("land")
+                        self.dronesFlight[droneIndex] = False
+                        print("land")
+                        self.takeoff = 0
+                    elif (data[4] == '0'):
+                        try:
+                            self.drones[droneIndex].send_rc_control(int(data[0]), int(data[1]), int(data[2]), int(data[3]))
+                        except:
+                            print("error")
     
+    """[TOOLS] Tools to broadcast specific messages to multiple Tello Drones"""
     def startKeepAlive(self):
         while True:
             print("Here Alive")
@@ -245,28 +235,7 @@ class TelloClient(object):
                     self.drones[i].send_command_without_return("command")
                     print(i)
                     i+=1
-                    time.sleep(5)
-
-    """[ROUTER-MODE] Swarm Command Functions"""
-    def takeOffRoutine(self):
-        print("here")
-        self.drones[0].send_command_with_return("takeoff")
-        self.dronesFlight[0] = True
-        self.drones[0].send_command_with_return("forward 150")
-        time.sleep(10)
-        self.drones[1].send_command_with_return("takeoff")
-        self.dronesFlight[1] = True
-        self.drones[2].send_command_with_return("takeoff")
-        self.dronesFlight[2] = True
-        self.drones[1].send_command_with_return("forward 100")
-        self.drones[2].send_command_with_return("forward 100")
-        # self.drones[3].send_command_with_return("takeoff")
-        # self.drones[4].send_command_with_return("takeoff")
-        # self.drones[5].send_command_with_return("takeoff")
-        # self.drones[3].send_command_with_return("forward 50")
-        # self.drones[4].send_command_with_return("forward 50")
-        # self.drones[5].send_command_with_return("forward 50")
-        
+                    time.sleep(5)       
     def swarmMon(self):
         i = 1
         while i < self.SwarmTotal:
@@ -350,6 +319,7 @@ class TelloClient(object):
             self.drones[i].send_command_without_return(message)
             self.dronesFlight[i] = True
             i+=1
+    
     """[Server Mode] Receives Video Footage, reduces the scale, displays and forwards
         to the main Server (to be used on a PI connected to the drone)
         Will forward the video data, for the main computer to process the facetracking
@@ -449,6 +419,7 @@ class TelloClient(object):
             except:
                 pass
     
+    """[TOOLS] Handles Hand Gesture Identification"""
     async def processImg(self, imgCrop, h, w):   
         aspectRatio = h/w
         imgWhite = np.ones((self.imgSize,self.imgSize,3),np.uint8)*255
@@ -473,6 +444,7 @@ class TelloClient(object):
             self.swarmLand()
         #cv2.imshow("ImageCrop", imgWhite)
 
+    """[TOOLS] Adjusts the Tello Position for Face Tracking"""
     def adjust_tello_position(self, offset_x, offset_y, offset_z):
         if not -90 <= offset_x <= 90 and offset_x is not 0:
             offset_x = offset_x/8
@@ -501,13 +473,8 @@ class TelloClient(object):
             #     self.serverSock.sendto(message.encode('utf-8'), ("192.168.56.1", 8000))
             #     self.prevmsg = message
 
+    """[TOOLS] Parses the movement commands in the txt file for showcase"""
     def _handle_gte(self, command):
-        """
-        Handles gte or >.
-
-        :param command: Command.
-        :return: None.
-        """
         id_list = []
         id = command.partition('>')[0]
         action = str(command.partition('>')[2])
@@ -521,36 +488,21 @@ class TelloClient(object):
         print("[INFO] Command Sent: " + command)
         # time.sleep(4)
 
+    """[TOOLS] Processes the delay for the delay commands in the txt file for showcase"""
     def _handle_delay(self, command):
-        """
-        Handles delay.
-
-        :param command: Command.
-        :return: None.
-        """
         delay_time = float(command.partition('delay')[2])
         print (f'[DELAY] Start Delay for {delay_time} second')
         time.sleep(delay_time)  
 
+    """[TOOLS] Handles Keyboard interrupt for showcase"""
     def _handle_keyboard_interrupt(self):
-        """
-        Handles keyboard interrupt.
-
-        :param command: Command.
-        :return: None.
-        """
         print('[QUIT_ALL], KeyboardInterrupt. Sending land to all drones')
         # tello_ips = self.manager.tello_ip_list
         # for ip in tello_ips:
         #     self.manager.send_command('land', ip)
 
+    """[TOOLS] Function to print Exceptions"""
     def _handle_exception(self, e):
-        """
-        Handles exception (not really; just logging to console).
-
-        :param command: Command.
-        :return: None.
-        """
         print(f'[EXCEPTION], {e}')
 
 
