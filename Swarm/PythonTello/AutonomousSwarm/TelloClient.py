@@ -29,29 +29,51 @@ class TelloClient(object):
         self.commands = self._get_commands(self.fpath)
         self.countSwarmRCerr = 0
 
-        #Establish Connection with the Tello Drones directly for Interaction Day
-        err = False
-        i = 0
-        self.drones = []
-        self.dronesFlight = []
-        print("here")
-        while (i < self.SwarmTotal):
-            self.drones.append(Tello.Tello(self.cfg["SwarmTelloAddr"][i], 1))
-            self.dronesFlight.append(False)
-            self.drones[i].send_command_with_return("command")
+        #Establish Connection with the Tello Drones directly for standalone or server mode
+        if (standalone):
+            err = False
+            i = 0
+            self.drones = []
+            self.dronesFlight = []
+            print("here")
+            while (i < self.SwarmTotal):
+                self.drones.append(Tello.Tello(self.cfg["SwarmTelloAddr"][i], 1))
+                self.dronesFlight.append(False)
+                self.drones[i].send_command_with_return("command")
+                time.sleep(2)
+                try:
+                    print("[SETUP] Drone " + str(i) + " Battery Level = " + str(self.drones[i].get_battery()))
+                except Exception as e:
+                    err = True
+                    print(e)
+                if (err == True):
+                    print("[SETUP] Drone " + str(i) + " Battery Level = " + str(self.drones[i].get_battery()))
+                    
+                i+=1
+            
+            self.drones[0].send_command_with_return("streamon")
+            print("[INFO] Starting Video Stream")
+            
+            #Start Mission Pad downward detection
+            self.swarmMon()
+            self.swarmMdirection(0)
+
+        elif (server):
+            self.me = Tello.Tello(self.cfg["SwarmTelloAddr"][0], 1)
+            self.me.send_command_with_return("command")
             time.sleep(2)
             try:
-                print("[SETUP] Drone " + str(i) + " Battery Level = " + str(self.drones[i].get_battery()))
+                print("[SETUP] Drone 0 Battery Level = " + str(self.me.get_battery()))
             except Exception as e:
                 err = True
                 print(e)
             if (err == True):
-                print("[SETUP] Drone " + str(i) + " Battery Level = " + str(self.drones[i].get_battery()))
-                
-            i+=1
-        
-        self.drones[0].send_command_with_return("streamon")
-        print("[INFO] Starting Video Stream")
+                print("[SETUP] Drone 0 Battery Level = " + str(self.me.get_battery()))
+            
+            #Start the socket if talking to SwarmServer
+            self.serverSock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            self.telloCmdSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            self.telloCmdSocket.bind(self.telloAddr)
         
         #Set flags and Misc
         self.command_timeout = .3
@@ -74,13 +96,7 @@ class TelloClient(object):
         self.autoLanding = 0
         self.face_cascade = cv2.CascadeClassifier('cascades/haarcascade_frontalface_default.xml')
         self.detector = HandDetector(maxHands=1)
-        self.classifier = Classifier("HandSignalModel/keras_model.h5","HandSignalModel/labels.txt")
-        
-        #Start the socket if talking to SwarmServer
-        # self.serverSock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        # self.telloCmdSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        # self.telloCmdSocket.bind(self.telloAddr)
-        
+        self.classifier = Classifier("HandSignalModel/keras_model.h5","HandSignalModel/labels.txt")     
         
     """[TOOL] Opens and Reads Commands from file"""
     def _get_commands(self, fpath):      
@@ -92,7 +108,7 @@ class TelloClient(object):
         with open(file_path, "r") as f:
             return yaml.safe_load(f)
     
-    """[Server Mode] Main thread used to handle commands received from Unity Game Engine
+    """[Server/Standalone Mode] Main thread used to handle commands received from Unity Game Engine
         or from external Python server sending Joystick Data
     fac"""
     def main(self):
@@ -141,7 +157,11 @@ class TelloClient(object):
             while True:
                 val = input("[INPUT] Key Commands:")
                 if val == "start":
-                    
+                    i = 0
+                    while i < self.SwarmTotal:
+                        if (self.drones[i].get_mission_pad_id() != -1):
+                            self.drones[i].send_command_without_return("land")
+                        i+=1 
                     try:
                         for command in self.commands:
                             command = command.rstrip()
@@ -237,7 +257,7 @@ class TelloClient(object):
                     i+=1
                     time.sleep(5)       
     def swarmMon(self):
-        i = 1
+        i = 0
         while i < self.SwarmTotal:
             self.drones[i].enable_mission_pads()
             i+=1 
@@ -247,24 +267,24 @@ class TelloClient(object):
             self.drones[i].set_mission_pad_detection_direction(direction)
             i+=1
     def swarmTakeoff(self):
-        i = 1
+        i = 0
         while i < self.SwarmTotal:
             self.drones[i].send_command_without_return("takeoff")
             self.dronesFlight[i] = True
             i+=1
     def swarmLand(self):
-        i = 1
+        i = 0
         while i < self.SwarmTotal:
             self.drones[i].send_command_without_return("land")
             self.dronesFlight[i] = False
             i+=1   
     def swarmDownvision(self, cam):
-        i = 1
+        i = 0
         while i < self.SwarmTotal:
             self.drones[i].send_command_without_return("downvision " + str(cam))
             i+=1  
     def swarmRC(self, roll, pitch, throttle, yaw):
-        i = 1
+        i = 0
         while i < 3:
             try:
                 self.drones[i].send_rc_control(roll, pitch, throttle, yaw)
@@ -278,43 +298,43 @@ class TelloClient(object):
                 # self.drones[i].send_command_with_return("land")
             i+=1
     def swarmForward(self, message):
-        i = 1
+        i = 0
         while i < self.SwarmTotal:
             self.drones[i].send_command_without_return(message)
             self.dronesFlight[i] = True
             i+=1
     def swarmBack(self, message):
-        i = 1
+        i = 0
         while i < self.SwarmTotal:
             self.drones[i].send_command_without_return(message)
             self.dronesFlight[i] = True
             i+=1
     def swarmUp(self, message):
-        i = 1
+        i = 0
         while i < self.SwarmTotal:
             self.drones[i].send_command_without_return(message)
             self.dronesFlight[i] = True
             i+=1
     def swarmDown(self, message):
-        i = 1
+        i = 0
         while i < self.SwarmTotal:
             self.drones[i].send_command_without_return(message)
             self.dronesFlight[i] = True
             i+=1
     def swarmRight(self, message):
-        i = 1
+        i = 0
         while i < self.SwarmTotal:
             self.drones[i].send_command_without_return(message)
             self.dronesFlight[i] = True
             i+=1
     def swarmLeft(self, message):
-        i = 1
+        i = 0
         while i < self.SwarmTotal:
             self.drones[i].send_command_without_return(message)
             self.dronesFlight[i] = True
             i+=1
     def broadcast(self, message):
-        i = 1
+        i = 0
         while i < self.SwarmTotal:
             self.drones[i].send_command_without_return(message)
             self.dronesFlight[i] = True
