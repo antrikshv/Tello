@@ -32,7 +32,7 @@ The drones communicate using UDP based off of the Tello SDK. There are two possi
 >- The Main Tello is connected directly to the computer via WIFI
 >- If Video is required for the different 
 > 
->![Tello No Video Architecture](../Documentation/Video.jpeg)
+>![Tello No Video Architecture](Documentation/Video.jpeg)
 
 # Requirements
 
