@@ -25,14 +25,14 @@ The drones communicate using UDP based off of the Tello SDK. There are two possi
 >- The Tello IP addresses are the ones given from the Router using DHCP not manual IP
 >- Communication is handled directly from the Computer and all the Tello drones
 > 
->![Tello No Video Architecture](Documentation\NoVideo.jpeg)
+>![Tello No Video Architecture](Documentation/NoVideo.jpeg)
 
 >Video
 >- Main Tello is in WIFI Mode while the rest are in AP Mode (refer to SDK) and are connected to the same Router which is connected to the same computer
 >- The Main Tello is connected directly to the computer via WIFI
 >- If Video is required for the different 
 > 
->![Tello No Video Architecture](Documentation\Video.jpeg)
+>![Tello No Video Architecture](../Documentation/Video.jpeg)
 
 # Requirements
 
