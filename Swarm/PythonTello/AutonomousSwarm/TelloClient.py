@@ -174,6 +174,8 @@ class TelloClient(object):
                         print(e)
                 elif val == "AI":
                     self.autonomous = True
+                elif val == "NAI":
+                    self.autonomous = False
                 elif (val == "0"):
                     self._handle_gte("0>land")
                 elif (val == "1"):

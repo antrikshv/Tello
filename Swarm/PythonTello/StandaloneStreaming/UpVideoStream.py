@@ -20,7 +20,6 @@ class RaspBerryServer(object):
         self.serverAddr = (self.cfg["serverip"], self.cfg["sendTelloVidPort"] + self.cfg["index"])
         self.serverRespAddr = (self.cfg["serverip"], self.cfg["sendTelloRespPort"] + self.cfg["index"])
         self.telloCmdSocket.bind(self.telloAddr)
-        
         self.me = TelloVideo.Tello(self.cfg["telloip"], 1)
         self.me.send_command_without_return("command")
         self.me.send_command_without_return("streamon")
@@ -47,32 +46,36 @@ class RaspBerryServer(object):
         self.takeoff = 0
         land = 1
         cam = 1
+        # while True:
+        #     data,_ = self.telloCmdSocket.recvfrom(self.buffSize)
+        #     if data != None: 
+        #         print(data)
+        #         data = data.decode('utf8')
+        #         data = data.split() 
+        #         if (len(data) == 1):
+        #             if (data[0] == "switchCam"):
+        #                 print("switchCam")
+        #                 self.me.send_command_without_return("downvision " + str(cam))
+        #                 cam = 0 if cam == 1 else 1
+        #         if (len(data) == 5):
+        #             if (data[4] == '1' and self.takeoff == 0): 
+        #                 self.me.send_command_without_return("takeoff")
+        #                 print("takeoff")
+        #                 self.takeoff = 1
+        #             elif (data[4] == '-1' and self.takeoff == 1): 
+        #                 self.me.send_command_without_return("land")
+        #                 print("land")
+        #                 self.takeoff = 0
+        #             elif (data[4] == '0'):
+        #                 try:
+        #                     self.me.send_rc_control(int(data[0]), int(data[1]), int(data[2]), int(data[3]))
+        #                 except:
+        #                     print("error")
+        #                 print(data) 
         while True:
-            data,_ = self.telloCmdSocket.recvfrom(self.buffSize)
-            if data != None: 
-                print(data)
-                data = data.decode('utf8')
-                data = data.split() 
-                if (len(data) == 1):
-                    if (data[0] == "switchCam"):
-                        print("switchCam")
-                        self.me.send_command_without_return("downvision " + str(cam))
-                        cam = 0 if cam == 1 else 1
-                if (len(data) == 5):
-                    if (data[4] == '1' and self.takeoff == 0): 
-                        self.me.send_command_without_return("takeoff")
-                        print("takeoff")
-                        self.takeoff = 1
-                    elif (data[4] == '-1' and self.takeoff == 1): 
-                        self.me.send_command_without_return("land")
-                        print("land")
-                        self.takeoff = 0
-                    elif (data[4] == '0'):
-                        try:
-                            self.me.send_rc_control(int(data[0]), int(data[1]), int(data[2]), int(data[3]))
-                        except:
-                            print("error")
-                        print(data) 
+            data = input("Key in Command: ")
+            self.me.send_command_without_return(data)
+
     
     def receiveVideo(self):     
         fps,st,frames_to_count,cnt = (0,0,20,0)

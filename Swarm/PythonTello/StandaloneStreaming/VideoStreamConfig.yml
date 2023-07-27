@@ -5,7 +5,7 @@ telloip:
   "192.168.10.1"
 
 serverip:
-  "192.168.56.1"
+  "127.0.0.1"
 
 rcvTelloCmdPort:
   7777
