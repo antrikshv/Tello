@@ -74,7 +74,7 @@ class RaspBerryServer(object):
         #                 print(data) 
         while True:
             data = input("Key in Command: ")
-            self.me.send_command_without_return(data)
+            self.me.send_command_with_return(data)
 
     
     def receiveVideo(self):     
