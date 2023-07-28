@@ -1,4 +1,4 @@
-# Autonomous Swarm
+# Tello Digital Twin
 
 Simulates Search and Rescue Mission using 5 Tello EDU drones (Can have a variable number of drones).
 
@@ -100,33 +100,7 @@ Formation:
 >Ensure the VideoStreamConfiguration.yaml file is up to date with the Tello IP addresses and details.
 
 ### Run Program
- **NO UNITY**
- 1. On all the drones and ensure they are blinking yellow and connected to the Router via the router admin page
- 2. Ensure Computer is connected to the same router 
- 3. Execute <TelloClient.py --standalone> to run using Router/WIFI (if connected using the wifi, video stream will run, if not there will be no video stream) 
 
- **UNITY**
- >(Will not execute Search and Recue, NON AUTONOMOUS SWARM)
- 1. On all the drones and ensure they are blinking yellow and connected to the Router via the router admin page
- 2. Ensure Computer is connected to the same router 
- 3. Execute <TelloClient.py --server --standalone> to run using Router/WIFI (if connected using the wifi, video stream will run, if not there will be no video stream) 
- 4. Execute <SwarmServer.py> to connect to UNITY
-
-### Start Swarm
-```
- [start] - Will kick off the Swarm. Prior to this all drones should have connected and would display on the Terminal, along with the battery
-```
-### Emergency Landing
-```
-[n] - n = index of drone to emergency land
-```
-### Toggle Face Tracking Mode
-
-```
-[AI] - Will on the Face Tracking Mode
- 
- [NAI] - Will off the Face Tracking Mode
-```
 
 # TroubleShooting
 > Most of the problems stem from unstable or inability to connect to Tello Drones

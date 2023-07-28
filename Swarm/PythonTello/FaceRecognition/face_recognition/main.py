@@ -8,6 +8,7 @@ local_address = (host, port)
 
 # Pass the is_dummy flag to run the face detection on a local camera
 drone = tello.Tello(host, port, is_dummy=False)
+drone.send_command("takeoff")
 def adjust_tello_position(offset_x, offset_y, offset_z):
     """
     Adjusts the position of the tello drone based on the offset values given from the frame

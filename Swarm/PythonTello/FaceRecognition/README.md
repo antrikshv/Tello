@@ -1,30 +1,21 @@
 # Face Detection and Tracking with Dji Tello drone
 
-The current implementation allows the user to:
+Focuses on Face Detection and Tracking Alogrithm for the Tello Drone on OpenCV
+> The flight movement and adjustment is not accurate in this file for the Tello Drone
 
-- Launch the drone through the command line using `python main.py`
-- Receive video feed from the drone to the computer and visualize the face detection carried out by the drone
+Current implementation:
 
-It allows the drone to:
-
+- Receive video feed from the drone to the computer and visualize the face detection carried out by the drone, amount of adjustment and the command sending function between the computer and the Tello Drone.
 - Detect multiple faces at any given frame
 - Position the user at the center of any shot by deciding the best movement based on the users x, y and z coordinates
 
 **Note:** Current implementation allows only tracking of 1 user.
 
-## Quick Start
+# Quick Start
+1. On Tello drone and connect directly to its WIFI
+2. Run Main.py which will cause the drone to take off and begin the face tracking
 
-To initialize your drone and get it up and running, simply clone the repository and download its dependencies with:
+# Requirements
 
-```bash
-pip install -r requirements.txt
-```
-
-Afterwards, connect to the drones wifi and run:
-
-```bash
-python main.py
-```
-
-This will make the drone take off and initialize a video feed directly from the drone to your computer.
-
+> - Python 3.8.0
+> - OpenCV 4.7.0 

@@ -4,7 +4,7 @@ This projects contains multiple different capabilities for the Tello Edu drones 
 
 1. [Projects](#projects)
 2. [Requirements](#requirements)
-3. [External Projects](#external-projects)
+3. [External Tools](#external-tools)
 
 # Projects
 
@@ -23,7 +23,7 @@ This projects contains multiple different capabilities for the Tello Edu drones 
 > - cvzone
 > - Tello Firmware v02.05.01.19 (Some capabilites cannot be used with different versions)
 
-# External Projects
+# External Tools
 
 This Repository uses code based from a few different repositories.
 
