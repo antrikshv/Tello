@@ -18,9 +18,9 @@ import cv2
 import numpy as np
 import math
 import asyncio
-import tensorflow
-from cvzone.HandTrackingModule import HandDetector
-from cvzone.ClassificationModule import Classifier
+# import tensorflow
+# from cvzone.HandTrackingModule import HandDetector
+# from cvzone.ClassificationModule import Classifier
 
 class TelloManager(object):
     """
@@ -126,17 +126,17 @@ class TelloManager(object):
         
         # self.me = Tello.Tello(self.cfg["telloip"], 1)
         # self.me.send_command_with_return("command")
-        self.tello_list[0].send_command_with_return("streamon")
+        # self.tello_list[0].send_command_with_return("streamon")
 
-        self.displayVideoThread = threading.Thread(target=self.displayVideo)
-        self.displayVideoThread.daemon = False
-        self.displayVideoThread.start()
+        # self.displayVideoThread = threading.Thread(target=self.displayVideo)
+        # self.displayVideoThread.daemon = False
+        # self.displayVideoThread.start()
     
     def displayVideo(self):
         print("[INFO] Starting Video Stream")
         face_cascade = cv2.CascadeClassifier('cascades/haarcascade_frontalface_default.xml')
-        self.detector = HandDetector(maxHands=1)
-        self.classifier = Classifier("HandSignalModel/keras_model.h5","HandSignalModel/labels.txt")
+        # self.detector = HandDetector(maxHands=1)
+        # self.classifier = Classifier("HandSignalModel/keras_model.h5","HandSignalModel/labels.txt")
         while True:
             try:
                 frame = self.tello_list[0].get_frame_read().frame

@@ -174,7 +174,7 @@ class Swarm(object):
 
         self.manager.connect_predetermined_tello(self.telloIps, n_tellos)
         # self.manager.find_avaliable_tello(n_tellos)
-        time.sleep(20)
+        # time.sleep(20)
         self.tellos = self.manager.get_tello_list()
         self.pools = SwarmUtil.create_execution_pools(n_tellos)
 
