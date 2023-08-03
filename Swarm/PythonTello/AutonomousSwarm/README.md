@@ -40,10 +40,12 @@ The drones communicate using UDP based off of the Tello SDK. There are two possi
 Video
 - Main Tello is in WIFI Mode while the rest are in AP Mode (refer to SDK) and are connected to the same Router which is connected to the same computer
 - The Main Tello is connected directly to the computer via WIFI
-- If Video is required for the different 
  
 ![Tello No Video Architecture](Documentation/Video.jpeg)
 
+- If Video is required for the different drones simultaneously, need to ensure that each drone is connected to its own seperate computer (Server communicating with different servers/pi)
+
+![RaspberryPiArch](Documentation/RaspberryPiArch.png)
 # Code Structure
 
 The overall Code is designated to two main files, the SwarmServer.py and TelloClient.py. The SwarmServer handles the communications with the Unity Project if any while the TelloClient handles the communication with the Tellos.
@@ -114,7 +116,7 @@ Formation:
 
 ### Start Swarm
 ```
- [start] - Will kick off the Swarm. Prior to this all drones should have connected and would display on the Terminal, along with the battery
+[start] - Will kick off the Swarm. Prior to this all drones should have connected and would display on the Terminal, along with the battery
 ```
 ### Emergency Landing
 ```
@@ -125,7 +127,7 @@ Formation:
 ```
 [AI] - Will on the Face Tracking Mode
  
- [NAI] - Will off the Face Tracking Mode
+[NAI] - Will off the Face Tracking Mode
 ```
 
 # TroubleShooting
